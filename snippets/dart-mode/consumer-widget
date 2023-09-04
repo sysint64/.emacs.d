@@ -1,0 +1,12 @@
+# name: consumer-widget
+# key: consumer
+# binding: direct-keybinding
+# --
+class ${1:Name} extends ConsumerWidget {
+  const $1({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    $0
+  }
+}

@@ -1,0 +1,17 @@
+# name: stateful-widget
+# key: stateful
+# binding: direct-keybinding
+# --
+class ${1:Name} extends StatefulWidget {
+  const $1({super.key});
+
+  @override
+  State<$1> createState() => $1State();
+}
+
+class $1State extends State<$1> {
+  @override
+  Widget build(BuildContext context) {
+    $0
+  }
+}

@@ -1,0 +1,12 @@
+# name: stateless-widget
+# key: stateless
+# binding: direct-keybinding
+# --
+class ${1:Name} extends StatelessWidget {
+  const $1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    $0
+  }
+}
