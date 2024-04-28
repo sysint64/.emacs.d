@@ -1,0 +1,5 @@
+# name: synonyms
+# key: syn
+# binding: direct-keybinding
+# --
+*synonyms*: $0

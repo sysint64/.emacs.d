@@ -71,6 +71,6 @@
 
 (defhydra hydra-frame (global-map "<escape>")
   "Command"
-  ("wf" ace-window :exit t))
+  ("g" ace-window :exit t))
 
 (provide 'layer-navigation)

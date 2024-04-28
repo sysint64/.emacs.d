@@ -61,8 +61,10 @@ Interactively also sends a terminating newline."
   (interactive)
   (recompile-buffer "*compilation generate*"))
 
-(global-set-key (kbd "C-1") 'switch-to-buffer)
-(global-set-key (kbd "C-2") 'project-switch-to-buffer)
+;; (global-set-key (kbd "C-1") 'switch-to-buffer)
+(global-set-key (kbd "C-1") 'consult-buffer)
+;; (global-set-key (kbd "C-2") 'project-switch-to-buffer)
+(global-set-key (kbd "C-2") 'consult-project-buffer)
 (global-set-key (kbd "C-7") 'save-all-and-compile)
 (global-set-key (kbd "C-S-n") 'project-find-file)
 (global-set-key (kbd "C-S-f") 'consult-git-grep)

@@ -1,0 +1,6 @@
+# name: examples
+# key: eg
+# binding: direct-keybinding
+# --
+*examples*:
+- $0

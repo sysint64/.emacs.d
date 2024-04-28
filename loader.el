@@ -12,6 +12,7 @@
   (require 'layer-lang-dart)
   (require 'layer-lang-glsl)
   (require 'layer-lang-json)
+  (require 'layer-lang-swift)
   (require 'layer-lang-markdown)
   (require 'layer-git)
 

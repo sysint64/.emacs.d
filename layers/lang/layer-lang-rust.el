@@ -17,7 +17,7 @@
   ;; (setq rustic-lsp-server 'rust-analyzer)
   (setq rustic-flycheck-setup-mode-line-p nil))
 
-(setq rustic-lsp-client 'eglot)
+;; (setq rustic-lsp-client 'eglot)
 
 ;; (defun create-rusty-tags ()
 ;;   "Create tags file."
@@ -50,6 +50,7 @@
   (setq require-final-newline nil)
   (setq mode-require-final-newline nil)
   (display-line-numbers-mode)
+  (lsp-mode)
   ;; (add-hook 'after-save-hook 'create-rusty-tags)
   )
 

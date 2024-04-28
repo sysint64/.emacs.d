@@ -139,6 +139,50 @@ point reaches the beginning or end of the buffer, stop there."
     (progn (easy-mark)
            (kill-ring-save (region-beginning) (region-end)))))
 
+(defun list-new-line ()
+  (interactive)
+
+  (setq now (point))
+  (setq now-line (line-number-at-pos))
+
+  (setq open-paren (search-backward "("))
+
+  (goto-char (symbol-value 'now))
+
+  (setq backward-comma (search-backward ","))
+
+  (goto-char (max (symbol-value 'open-paren) (symbol-value 'backward-comma)))
+  (forward-char)
+
+  (when (eq (symbol-value 'now-line) (line-number-at-pos))
+    (newline)
+    (indent-for-tab-command))
+
+  (setq now (point))
+
+  (setq forward-comma (search-forward ","))
+
+  (goto-char (symbol-value 'now))
+
+  (setq close-paren (- (search-forward ")") 1))
+
+  (goto-char (min (symbol-value 'forward-comma) (symbol-value 'close-paren)))
+
+  (newline)
+  (indent-for-tab-command))
+
+(defun comment-paragraph-forward ()
+  (interactive)
+  (mark-paragraph)
+  (comment-or-uncomment-region-or-line)
+  (forward-paragraph))
+
+(defun comment-paragraph-backward ()
+  (interactive)
+  (backward-paragraph)
+  (mark-paragraph)
+  (comment-or-uncomment-region-or-line))
+
 (global-set-key (kbd "<home>") 'smarter-move-beginning-of-line)
 (global-set-key (kbd "<end>") 'move-end-of-line)
 (global-set-key (kbd "M-<up>") 'forward-sexp)
@@ -177,18 +221,26 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defhydra hydra-motions (global-map "<escape>")
   "Command"
-  ("." my-scroll-up)
-  ("," my-scroll-down)
   ("k" hydra-kill/body :exit t)
   ("mm" set-empty-mark)
   ("mp" mark-paragraph)
   ("mf" mark-defun)
+  ("ln" list-new-line)
+  ("\\p" comment-paragraph-forward)
+  ("\\bp" comment-paragraph-backward)
   ("t_" string-inflection-underscore)
   ("t-" string-inflection-kebab-case)
   ("tc" string-inflection-lower-camelcase)
   ("tC" string-inflection-camelcase)
   ("tu" string-inflection-upcase)
+  ("<up>" treesit-beginning-of-defun)
+  ("<down>" treesit-end-of-defun)
   ("c" eval-and-replace :exit t)
-  ("j" hydra-jump/body :exit t))
+  ("j" hydra-jump/body :exit t)
+  ("." hydra-repeat))
+
+;; (treesit-beginning-of-thing "if_expression")
+;; (treesit-end-of-thing "if_expression")
+;; (treesit-thing-at-point "if_expression" 'nested)
 
 (provide 'layer-motions)
