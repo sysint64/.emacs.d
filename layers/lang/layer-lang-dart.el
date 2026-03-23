@@ -46,7 +46,6 @@
 ;;   (interactive)
 ;;   (password-generator-simple 12))
 
-
 ;; (define-key dart-mode-map (kbd "C-c p") 'make-password)
 
 (fset 'flutter/convert-consumer-widget-to-consumer-stateful-widget

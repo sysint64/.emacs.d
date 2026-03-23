@@ -18,4 +18,6 @@
 (define-key god-local-mode-map (kbd "b") #'backward-word)
 (define-key god-local-mode-map (kbd "a") #'nop)
 
+('string-inflection-underscore-function)
+
 (provide 'layer-god)

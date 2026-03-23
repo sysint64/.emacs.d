@@ -46,4 +46,9 @@
   ("xf" xcode-open-current-file :exit t)
   ("lp" print-swift-var-under-point :exit t))
 
+
+(use-package highlight-numbers :ensure t
+  :config
+  (add-hook 'swift-mode-hook 'highlight-numbers-mode))
+
 (provide 'layer-lang-swift)

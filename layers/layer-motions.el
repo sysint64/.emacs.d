@@ -3,7 +3,7 @@
          ;; ("M-g g" . 'avy-goto-line)
          ))
 
-(use-package expand-region :ensure t
+(use-package expand-region  :ensure t
   :bind (("C-d" . er/expand-region)
          ("C-9" . er/mark-outside-pairs)
          ("C-0" . er/mark-inside-pairs)
@@ -233,11 +233,16 @@ point reaches the beginning or end of the buffer, stop there."
   ("tc" string-inflection-lower-camelcase)
   ("tC" string-inflection-camelcase)
   ("tu" string-inflection-upcase)
+  ("<left>" left-word)
+  ("<right>" right-word)
   ("<up>" treesit-beginning-of-defun)
   ("<down>" treesit-end-of-defun)
   ("c" eval-and-replace :exit t)
   ("j" hydra-jump/body :exit t)
-  ("." hydra-repeat))
+  ("." hydra-repeat)
+  ("ha" hs-show-all :exit t)
+  ("hl" hs-hide-level :exit t)
+  ("hs" hs-toggle-hiding :exit t))
 
 ;; (treesit-beginning-of-thing "if_expression")
 ;; (treesit-end-of-thing "if_expression")

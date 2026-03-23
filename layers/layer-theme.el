@@ -76,4 +76,8 @@
 (setq window-divider-default-right-width 2)
 (window-divider-mode)
 
+(set-face-background 'fringe "#14232d")
+(setq olivetti-style t)
+(set-face-background 'olivetti-fringe "#14232d")
+
 (provide 'layer-theme)

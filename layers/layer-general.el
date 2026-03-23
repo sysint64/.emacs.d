@@ -11,6 +11,9 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(when (display-graphic-p)
+  (require 'all-the-icons))
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (delete-selection-mode 1)
@@ -32,13 +35,36 @@
 (setq-default indent-tabs-mode nil)
 (electric-pair-mode 1)
 
-(add-hook 'elisp-mode-hook 'display-line-numbers-mode)
-
 (use-package flycheck :ensure t)
 (use-package hydra :ensure t)
 (use-package undo-tree :ensure t
   :init (global-undo-tree-mode))
 (use-package highlight-symbol :ensure t)
+(use-package flymake-cspell :ensure t)
+(use-package centered-window :ensure t)
+(use-package olivetti :ensure t)
+
+(setq olivetti-body-width 120)
+
+;; (add-hook 'olivetti-mode-hook
+          ;; (lambda () (visual-line-mode -1)))
+
+(add-to-list 'cwm-ignore-buffer-predicates
+             (lambda (buffer)
+               (with-current-buffer buffer
+                 (derived-mode-p 'magit-mode))))
+
+;; (centered-window-mode)
+
+(setq flymake-fringe-indicator-position nil)
+
+(add-hook 'prog-mode-hook #'flymake-cspell-setup)
+(add-hook 'prog-mode-hook 'flymake-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (olivetti-mode)
+            (visual-line-mode -1)))
 
 (setq hydra-is-helpful nil)
 

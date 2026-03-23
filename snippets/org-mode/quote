@@ -1,0 +1,7 @@
+# name: quote
+# key: >>
+# binding: direct-keybinding
+# --
+#+BEGIN_QUOTE
+$0
+#+END_QUOTE

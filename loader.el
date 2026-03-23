@@ -14,6 +14,8 @@
   (require 'layer-lang-json)
   (require 'layer-lang-swift)
   (require 'layer-lang-markdown)
+  (require 'layer-lang-tpb)
+  (require 'layer-lang-elixir)
   (require 'layer-git)
 
   ;; Other
@@ -25,9 +27,11 @@
   (require 'layer-project)
   (require 'layer-company)
   (require 'layer-snippets)
+  (require 'layer-org)
 
   (require 'llvm-mode)
   (require 'wgsl-mode)
+  (require 'jai-mode)
 
   (require 'layer-theme))
 

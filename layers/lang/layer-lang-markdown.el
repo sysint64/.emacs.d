@@ -7,3 +7,5 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
+
+(add-hook 'markdown-mode-hook 'olivetti-mode)

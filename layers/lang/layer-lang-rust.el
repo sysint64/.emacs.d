@@ -27,8 +27,31 @@
 ;;       (shell-command "rusty-tags emacs -O TAGS" t))
 ;;     (message "Tags rebuilt sucessfully")))
 
-(add-hook 'rustic-mode-hook 'rust-ts-mode)
-(add-hook 'rust-ts-mode-hook 'my-rust-hook)
+
+(defun my-rust-hook ()
+  (setq truncate-lines t)
+  (setq require-final-newline nil)
+  (setq mode-require-final-newline nil)
+  (display-line-numbers-mode)
+  (lsp-mode)
+  ;; (add-hook 'after-save-hook 'create-rusty-tags)
+  )
+
+(add-hook 'rustic-mode-hook 'my-rust-hook)
+(define-key rust-mode-map (kbd "C-c C-d") 'duplicate-current-line)
+
+(defalias 'tech-paws-ui/wrap-widget-rust
+   (kmacro "w i d g e t ( ) . b u i l d ( ) <left> x <backspace> c t x , SPC | | <left> c t x <right> SPC { } <right> C-S-SPC C-f b u i l d <return> M-<up> C-w <left> <left> <return> C-y ; <down> <left> M-<down> C-M-l <home> C-d"))
+
+(defhydra hydra-rust (global-map "<escape>")
+ "Command"
+ ("ww" tech-paws-ui/wrap-widget-rust :exit t))
+
+
+;; (rust-ts-mode-map (kbd "C-c C-d") 'duplicate-current-line)
+
+;; (add-hook 'rustic-mode-hook 'rust-ts-mode)
+;; (add-hook 'rust-ts-mode-hook 'my-rust-hook)
 
 (use-package highlight-numbers :ensure t
   :config
@@ -44,15 +67,6 @@
 ;; (add-hook 'rustic-mode-hook #'tree-sitter-mode)
 
 ;; (define-key rustic-mode-map (kbd "C-<return>") 'comment-indent-new-line)
-
-(defun my-rust-hook ()
-  (setq truncate-lines t)
-  (setq require-final-newline nil)
-  (setq mode-require-final-newline nil)
-  (display-line-numbers-mode)
-  (lsp-mode)
-  ;; (add-hook 'after-save-hook 'create-rusty-tags)
-  )
 
 ;; (setq rustic-lsp-server 'rust-analyzer)
 ;; TODO:

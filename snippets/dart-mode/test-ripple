@@ -1,0 +1,7 @@
+# name: test-ripple
+# key: test-ripple
+# binding: direct-keybinding
+# --
+final button = find.byKey(${1:key});
+await tester.startGesture(tester.getCenter(button));
+await tester.pumpNFrames(15);

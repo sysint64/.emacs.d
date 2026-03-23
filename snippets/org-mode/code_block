@@ -1,0 +1,7 @@
+# name: code_block
+# key: ```
+# binding: direct-keybinding
+# --
+#+BEGIN_SRC ${1:lang}
+$0
+#+END_SRC

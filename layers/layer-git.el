@@ -1,9 +1,10 @@
 (use-package magit :ensure t)
 
 (use-package diff-hl :ensure t
-             :init
-             (global-diff-hl-mode)
-             (diff-hl-flydiff-mode))
+             ;; :init
+             ;; (global-diff-hl-mode)
+             ;; (diff-hl-flydiff-mode)
+             )
 
 (defhydra hydra-git (global-map "<escape>")
   "Command"

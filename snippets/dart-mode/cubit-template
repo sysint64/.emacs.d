@@ -1,0 +1,45 @@
+# name: cubit-template
+# key: cubit
+# binding: direct-keybinding
+# --
+import 'package:haruhi_intern/bloc/raii_cubit.dart';
+import 'package:haruhi_intern/haruhi_cancelable.dart';
+import 'package:haruhi_intern/services/errors/errors_service.dart';
+import 'package:haruhi_intern/ui_services/notifications_ui_service.dart';
+import 'package:haruhi_intern/widgets/errors/general_errors_presenter.dart';
+
+// ${1:Name}
+
+class ${1:$(string-inflection-pascal-case-function yas-text)}Cubit extends RaiiCubit<${1:$(string-inflection-pascal-case-function yas-text)}ViewState> {
+  ${1:$(string-inflection-pascal-case-function yas-text)}Cubit({
+    required GeneralErrorsPresenter generalErrorsPresenter,
+    required ${1:$(string-inflection-pascal-case-function yas-text)}Presenter ${1:$(string-inflection-camelcase-function yas-text)}Presenter,
+    required NotificationsUiService notificationsUiService,
+    required ErrorsService errorsService,
+  })  : _generalErrorsPresenter = generalErrorsPresenter,
+        _${1:$(string-inflection-camelcase-function yas-text)}Presenter = ${1:$(string-inflection-camelcase-function yas-text)}Presenter,
+        _notificationsUiService = notificationsUiService,
+        _errorsService = errorsService,
+        super(const ${1:$(string-inflection-pascal-case-function yas-text)}ViewState.loading()) {
+    load();
+  }
+
+  final GeneralErrorsPresenter _generalErrorsPresenter;
+  final ${1:$(string-inflection-pascal-case-function yas-text)}Presenter _${1:$(string-inflection-camelcase-function yas-text)}Presenter;
+  final NotificationsUiService _notificationsUiService;
+  final ErrorsService _errorsService;
+
+  Future<void> load() async {
+    try {
+      emit(const ${1:$(string-inflection-pascal-case-function yas-text)}ViewState.loading());
+      $0
+    } on HaruhiCanceledException {
+      // Do nothing
+    } catch (e, st) {
+      final error = _errorsService.registerError(e, st);
+      final uiError = _generalErrorsPresenter.createGeneralError(error);
+
+      emit(${1:$(string-inflection-pascal-case-function yas-text)}ViewState.loadingError(uiError));
+    }
+  }
+}

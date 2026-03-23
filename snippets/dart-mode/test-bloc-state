@@ -1,0 +1,8 @@
+# name: test-bloc-state
+# key: when-bloc-state
+# binding: direct-keybinding
+# --
+when(() => ${1:cubit}.stream).thenAnswer((_) => const Stream.empty());
+when(() => $1.state).thenReturn(
+  ${2:State}
+);

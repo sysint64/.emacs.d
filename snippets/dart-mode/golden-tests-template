@@ -1,0 +1,199 @@
+# name: golden-tests-template
+# key: golden
+# binding: direct-keybinding
+# --
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../../../ext.dart';
+import '../../../../golden.dart';
+import '../../../../haruhi_test_app_provider.dart';
+import '../../../../widgets.dart';
+
+// ${1:Name}
+// Widget: ${1:$(string-inflection-pascal-case-function yas-text)}Widget
+// Cubit: ${1:$(string-inflection-pascal-case-function yas-text)}Cubit
+// ViewState: ${1:$(string-inflection-pascal-case-function yas-text)}ViewState
+
+class _Mock${1:$(string-inflection-pascal-case-function yas-text)}Cubit extends Mock implements ${1:$(string-inflection-pascal-case-function yas-text)}Cubit {}
+
+void main() {
+  setUpAll(() async {
+    $0// await loadAppFonts();
+    // await loadShaders();
+  });
+
+  group('${1:$(string-inflection-pascal-case-function yas-text)}Widget', () {
+    group('widget', () {
+      late ${1:$(string-inflection-pascal-case-function yas-text)}Cubit cubit;
+
+      setUp(() {
+        cubit = _Mock${1:$(string-inflection-pascal-case-function yas-text)}Cubit();
+      });
+
+      Widget testWidget() {
+        return BlocProvider.value(
+          value: cubit,
+          child: HaruhiTestAppProvider(
+            child: const ${1:$(string-inflection-pascal-case-function yas-text)}Widget(),
+          ),
+        );
+      }
+
+      testWidgets(
+        'loading widget visible '
+        'when loading state',
+        (tester) async {
+          when(() => cubit.stream).thenAnswer((_) => const Stream.empty());
+          when(() => cubit.state).thenReturn(
+            const ${1:$(string-inflection-pascal-case-function yas-text)}ViewState.loading(),
+          );
+
+          await tester.pumpWidget(testWidget());
+          await tester.pump(const Duration(seconds: 1));
+
+          expect(find.byKey(${1:$(string-inflection-pascal-case-function yas-text)}Widget.keyLoading), findsOneWidget);
+          expect(find.byKey(${1:$(string-inflection-pascal-case-function yas-text)}Widget.keyLoaded), findsNothing);
+        },
+      );
+    });
+
+    group('golden', () {
+      Widget testWidget(
+        Widget widget, {
+        required ThemeMode themeMode,
+      }) {
+        return HaruhiTestAppProvider(
+          themeMode: themeMode,
+          child: widget,
+        );
+      }
+
+      testGolden(
+        'rendered correctly '
+        'when theme is light',
+        fileName: '${1:$(string-inflection-underscore-function yas-text)}_widget_light.png',
+        (tester) async {
+          await tester.setTestSize(const Size(800, 390));
+
+          await tester.pumpWidget(
+            testWidget(
+              const _TestWidget(),
+              themeMode: ThemeMode.light,
+            ),
+          );
+          await tester.pumpAndSettle();
+        },
+      );
+
+      testGolden(
+        'rendered correctly '
+        'when theme is dark',
+        fileName: '${1:$(string-inflection-underscore-function yas-text)}_widget_dark.png',
+        (tester) async {
+          await tester.setTestSize(const Size(800, 390));
+
+          await tester.pumpWidget(
+            testWidget(
+              const _TestWidget(),
+              themeMode: ThemeMode.dark,
+            ),
+          );
+          await tester.pumpAndSettle();
+        },
+      );
+
+      testGolden(
+        'rendered correctly '
+        'when theme is light '
+        'and font is bold '
+        'and font is 1.5x bigger',
+        fileName: '${1:$(string-inflection-underscore-function yas-text)}_widget_accessibility_x1.5.png',
+        (tester) async {
+          await tester.setTestSize(const Size(800, 390));
+
+          await tester.pumpWidget(
+            testWidget(
+              const MediaQuery(
+                data: MediaQueryData(
+                  boldText: true,
+                  textScaler: TextScaler.linear(1.5),
+                ),
+                child: _TestWidget(),
+              ),
+              themeMode: ThemeMode.light,
+            ),
+          );
+          await tester.pumpAndSettle();
+        },
+      );
+
+      testGolden(
+        'rendered correctly '
+        'when theme is light '
+        'and font is bold '
+        'and font is 2x bigger',
+        fileName: '${1:$(string-inflection-underscore-function yas-text)}_widget_accessibility_x2.png',
+        (tester) async {
+          await tester.setTestSize(const Size(800, 390));
+
+          await tester.pumpWidget(
+            testWidget(
+              const MediaQuery(
+                data: MediaQueryData(
+                  boldText: true,
+                  textScaler: TextScaler.linear(2.0),
+                ),
+                child: _TestWidget(),
+              ),
+              themeMode: ThemeMode.light,
+            ),
+          );
+          await tester.pumpAndSettle();
+        },
+      );
+    });
+  });
+}
+
+class _TestWidget extends StatelessWidget {
+  const _TestWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          spacing: 8,
+          children: [
+            DrawBoundaryWidget(
+              child: _TestVariant(${1:$(string-inflection-pascal-case-function yas-text)}ViewState(),),
+            ),
+            DrawBoundaryWidget(
+              child: _TestVariant(${1:$(string-inflection-pascal-case-function yas-text)}ViewState(),),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _TestVariant extends StatelessWidget {
+  const _TestVariant(this.viewState);
+
+  final ${1:$(string-inflection-pascal-case-function yas-text)}ViewState viewState;
+
+  @override
+  Widget build(BuildContext context) {
+    return MockViewStateWidget<${1:$(string-inflection-pascal-case-function yas-text)}Cubit, ${1:$(string-inflection-pascal-case-function yas-text)}ViewState>(
+      bloc: _Mock${1:$(string-inflection-pascal-case-function yas-text)}Cubit(),
+      viewState: viewState,
+      child: const ${1:$(string-inflection-pascal-case-function yas-text)}Widget(),
+    );
+  }
+}

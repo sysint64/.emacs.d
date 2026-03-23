@@ -1,0 +1,23 @@
+# name: view-state-template
+# key: viewstate
+# binding: direct-keybinding
+# --
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:haruhi_intern/widgets/errors/general_errors_view_state.dart';
+
+part '${1:$(string-inflection-underscore-function yas-text)}.freezed.dart';
+
+// ${1:Name}
+
+@freezed
+sealed class ${1:$(string-inflection-pascal-case-function yas-text)} with _$${1:$(string-inflection-pascal-case-function yas-text)} {
+  const factory ${1:$(string-inflection-pascal-case-function yas-text)}.loading() = ${1:$(string-inflection-pascal-case-function yas-text)}Loading;
+
+  const factory ${1:$(string-inflection-pascal-case-function yas-text)}.loaded({
+    $0
+  }) = ${1:$(string-inflection-pascal-case-function yas-text)}Loaded;
+
+  const factory ${1:$(string-inflection-pascal-case-function yas-text)}.loadingError(
+    GeneralErrorViewState error,
+  ) = ${1:$(string-inflection-pascal-case-function yas-text)}LoadingError;
+}
