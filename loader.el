@@ -3,8 +3,8 @@
   (add-to-list 'load-path (concat user-emacs-directory "vendor"))
   (add-to-list 'load-path (concat user-emacs-directory "layers/lang"))
 
-  (use-package hydra
-    :ensure t)
+  (use-package hydra :ensure t)
+  (use-package all-the-icons :ensure t)
 
   (require 'layer-vertico)
   (require 'layer-eglot)
