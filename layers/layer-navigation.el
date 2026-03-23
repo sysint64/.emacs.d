@@ -10,9 +10,6 @@
 (use-package consult
   :ensure t)
 
-(use-package hydra
-  :ensure t)
-
 (use-package buffer-move :ensure t
              :bind (("C-S-c <left>" . buf-move-left)
                     ("C-S-c <right>" . buf-move-right)
