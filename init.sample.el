@@ -1,5 +1,9 @@
 (require 'package)
 
+(let ((early-file (expand-file-name "early-init.el" user-emacs-directory)))
+  (when (file-exists-p early-file)
+    (load early-file)))
+
 (setq package-enable-at-startup nil)
 (setq mac-command-modifier 'control)
 
