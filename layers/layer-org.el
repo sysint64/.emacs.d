@@ -1,7 +1,6 @@
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory "~/.org")
   (org-roam-dailies-directory "journals/")
   (org-roam-complete-everywhere t)
   (org-roam-capture-templates
@@ -22,8 +21,6 @@
         (wl . wl-other-frame)))
 
 (setq org-agenda-files nil)
-(add-to-list 'org-agenda-files "~/.org/journals")
-(add-to-list 'org-agenda-files "~/.org/pages")
 
 (define-key org-mode-map (kbd "M-.") 'org-open-at-point)
 (define-key org-mode-map (kbd "M-,") 'org-mark-ring-goto)

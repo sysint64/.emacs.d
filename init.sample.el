@@ -1,5 +1,9 @@
 (require 'package)
 
+(setq org-roam-directory (file-truename "~/.org"))
+(add-to-list 'org-agenda-files "~/.org/journals")
+(add-to-list 'org-agenda-files "~/.org/pages")
+
 (let ((early-file (expand-file-name "early-init.el" user-emacs-directory)))
   (when (file-exists-p early-file)
     (load early-file)))
