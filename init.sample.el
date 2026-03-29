@@ -27,3 +27,7 @@
 (set-face-font 'default "Hack-12")
 ;; (require 'theme-dark)
 (setq inhibit-startup-screen t)
+
+(let ((after-file (expand-file-name "after-init.el" user-emacs-directory)))
+  (when (file-exists-p after-file)
+    (load after-file)))
