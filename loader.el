@@ -19,6 +19,7 @@
   (require 'layer-lang-markdown)
   (require 'layer-lang-tpb)
   (require 'layer-lang-elixir)
+  (require 'layer-lang-wgsl)
   (require 'layer-git)
 
   ;; Other
@@ -33,7 +34,6 @@
   (require 'layer-org)
 
   (require 'llvm-mode)
-  (require 'wgsl-mode)
   (require 'jai-mode)
 
   (require 'layer-theme))
